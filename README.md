@@ -1,0 +1,1 @@
+# cfn-customres-go
