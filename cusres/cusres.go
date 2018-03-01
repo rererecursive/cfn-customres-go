@@ -237,5 +237,12 @@ func genKey(parent, child string) string {
 
 // printLog prints a log for CloudWatch.
 func printLog(msg string, x interface{}) {
-	log.Printf("%s: %s\n", msg, fmt.Sprintf("%v", x))
+	var str string
+	b, err := json.Marshal(x)
+	if err != nil {
+		str = fmt.Sprintf("%v", x)
+	} else {
+		str = string(b)
+	}
+	log.Printf("%s: %s\n", msg, str)
 }
