@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFromation Lambda-backed Custom Resource Sample
+
+Resources:
+
+  CFnCustomResSample:
+    Type: Custom::CFnCustomResSample
+    Version : "1.0"
+    Properties:
+      ServiceToken: !GetAtt [ FunctionCFnCustomResSample, Arn ]
+      UserNamePrefix: user-
+
+  FunctionCFnCustomResSample:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: cfn-customres-go-sample
+      Role: !GetAtt [ RoleCFnCustomResSample, Arn ]
+      Code:
+        S3Bucket: {{BUCKET_NAME}}
+        S3Key: cfn-customres-go-sample.zip
+      Runtime: "go1.x"
+      Timeout: "30"
+
+  RoleCFnCustomResSample:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal: 
+              Service: 
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: Allow-CFNDescribeStack-LambdaExecution
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+
+  SampleUser:
+    Type: "AWS::IAM::User"
+    Properties: 
+      UserName: !GetAtt [ CFnCustomResSample, UserName ]
