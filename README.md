@@ -5,6 +5,9 @@ Simple utility for creating AWS CloudFormation Lambda-backed Custom Resource in 
 [![Build Status](https://travis-ci.org/nfukasawa/cfn-customres-go.svg?branch=master)](https://travis-ci.org/nfukasawa/cfn-customres-go)
 [![Coverage Status](https://coveralls.io/repos/github/nfukasawa/cfn-customres-go/badge.svg?branch=master)](https://coveralls.io/github/nfukasawa/cfn-customres-go?branch=master)
 
+[![GoDoc](https://godoc.org/github.com/nfukasawa/cfn-customres-go/cusres?status.svg)](https://godoc.org/github.com/nfukasawa/cfn-customres-go/cusres)
+
+
 ## Install
 ```
 go get github.com/nfukasawa/cfn-customres-go/cusres
