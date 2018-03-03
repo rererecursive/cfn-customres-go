@@ -13,7 +13,8 @@ Simple utility for creating AWS CloudFormation Lambda-backed Custom Resource in 
 go get github.com/nfukasawa/cfn-customres-go/cusres
 ```
 ## Run Sample
-```shell
+Create a simple CloudFormation stack using Lambda-backed custom resource.
+```shell
 $ cd sample
 $ BUCKET_NAME=your_bucket_name STACK_NAME=your_stack_name make deploy
 ```
