@@ -10,7 +10,7 @@ Simple utility for creating AWS CloudFormation Lambda-backed Custom Resource in 
 
 ## Install
 ```
-go get github.com/nfukasawa/cfn-customres-go/cusres
+go get -u github.com/nfukasawa/cfn-customres-go/cusres
 ```
 ## Run Sample
 Create a simple CloudFormation stack using Lambda-backed custom resource.
