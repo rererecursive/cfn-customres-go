@@ -13,11 +13,11 @@ Resources:
   FunctionCFnCustomResSample:
     Type: AWS::Lambda::Function
     Properties:
-      Handler: cfn-customres-go-sample
+      Handler: main
       Role: !GetAtt [ RoleCFnCustomResSample, Arn ]
       Code:
-        S3Bucket: {{BUCKET_NAME}}
-        S3Key: cfn-customres-go-sample.zip
+        S3Bucket: source.ap-southeast-2.zac.base2services.com
+        S3Key: main.zip
       Runtime: "go1.x"
       Timeout: "30"
 
@@ -28,8 +28,8 @@ Resources:
         Version: 2012-10-17
         Statement:
           - Effect: Allow
-            Principal: 
-              Service: 
+            Principal:
+              Service:
                 - lambda.amazonaws.com
             Action:
               - sts:AssumeRole
@@ -48,5 +48,5 @@ Resources:
 
   SampleUser:
     Type: "AWS::IAM::User"
-    Properties: 
+    Properties:
       UserName: !GetAtt [ CFnCustomResSample, UserName ]

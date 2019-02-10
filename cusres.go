@@ -1,4 +1,4 @@
-package cusres
+package main
 
 import (
 	"bytes"

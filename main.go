@@ -2,12 +2,10 @@ package main
 
 import (
 	"context"
-
-	"github.com/nfukasawa/cfn-customres-go/cusres"
 )
 
 func main() {
-	cusres.StartLambda(&handler{})
+	StartLambda(&handler{})
 }
 
 type resourceProperties struct {
@@ -20,7 +18,7 @@ type responseData struct {
 
 type handler struct{}
 
-func (h *handler) Create(ctx context.Context, req cusres.Request) (physicalResourceID string, data interface{}, err error) {
+func (h *handler) Create(ctx context.Context, req Request) (physicalResourceID string, data interface{}, err error) {
 	p := resourceProperties{}
 	err = req.ResourceProperties.Unmarshal(&p)
 	if err != nil {
@@ -32,11 +30,11 @@ func (h *handler) Create(ctx context.Context, req cusres.Request) (physicalResou
 	}, nil
 }
 
-func (h *handler) Update(ctx context.Context, req cusres.Request) (data interface{}, err error) {
+func (h *handler) Update(ctx context.Context, req Request) (data interface{}, err error) {
 	_, data, err = h.Create(ctx, req)
 	return data, err
 }
 
-func (h *handler) Delete(ctx context.Context, req cusres.Request) error {
+func (h *handler) Delete(ctx context.Context, req Request) error {
 	return nil
 }
